@@ -1,6 +1,6 @@
 import Container from "./Container"
 import logo from '../../assets/logo.svg'
-import Button from "./button"
+
 function Navbar() {
   return (
     <div className="w-full border border-b border-b-gray-200 py-5 ">
