@@ -4,6 +4,7 @@ import Modal from "./Modal"
 import { Slider } from "./Slider"
 import TabCard from "./TabCard"
 import { SwiperSlide } from 'swiper/react';
+import TopicForm from "../form/TopicForm"
 
 function TabView({tabdata=[] , tabHeaders=[] , activeIndex=0 , changeActiveIndex  }) {
   const active = 'cursor-pointer w-full border-2 border-transparent border-b-[#fe5829] flex justify-center items-center py-2.5 bg-[#fff8f6] text-[#fe5829]'
@@ -22,7 +23,7 @@ function TabView({tabdata=[] , tabHeaders=[] , activeIndex=0 , changeActiveIndex
   return (
     <div className="w-full">
     <Modal isOpen={isModalOpen} onClose={closeModal}>
-     
+       <TopicForm></TopicForm>
       </Modal>
     <div className="md:grid gap-2.5 block md:grid-cols-[10fr_2fr] px-2">
         <div className="min-w-full my-5 md:my-0 max-w-screen">
