@@ -1,5 +1,5 @@
 import Button from "./Button"
-import Pills from "./pills"
+import Pills from "./Pills"
 
 function TabCard({item}) {
   return (
