@@ -1,4 +1,4 @@
-import Button from "./button"
+import Button from "./Button"
 import Pills from "./pills"
 
 function TabCard({item}) {

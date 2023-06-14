@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Button from "./button"
+import Button from "./Button"
 import Modal from "./Modal"
 import { Slider } from "./Slider"
 import TabCard from "./TabCard"
