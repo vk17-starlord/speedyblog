@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Button from './Button';
 import Pills from './Pills';
 
@@ -15,9 +16,10 @@ function TabCard({ item }) {
       </div>
 
       <div className="action md:w-max w-full">
-        <Button className="md:w-max w-full">
+       <Link to={`/editor/${item.id}`}>
+       <Button className="md:w-max w-full">
           <i className="mr-2 bx bxs-magic-wand"></i> Write
-        </Button>
+        </Button></Link>
       </div>
     </div>
   );

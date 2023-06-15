@@ -1,16 +1,17 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Button from "./Button"
 import Modal from "./Modal"
 import { Slider } from "./Slider"
 import TabCard from "./TabCard"
 import { SwiperSlide } from 'swiper/react';
 import TopicForm from "../form/TopicForm"
+import { useBlogState } from "../../context/BlogContext"
 
 function TabView({tabdata=[] , tabHeaders=[] , activeIndex=0 , changeActiveIndex  }) {
   const active = 'cursor-pointer w-full border-2 border-transparent border-b-[#fe5829] flex justify-center items-center py-2.5 bg-[#fff8f6] text-[#fe5829]'
   const notActive = 'cursor-pointer w-full hover:border-b-[#fe5829] border-2 border-transparent hover:bg-[#fff8f6]  flex justify-center items-center py-2.5 hover:text-[#fe5829]'
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -18,6 +19,10 @@ function TabView({tabdata=[] , tabHeaders=[] , activeIndex=0 , changeActiveIndex
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  useState(()=>{
+    console.log("here",tabdata)
+  },[tabdata])
 
 
   return (
@@ -32,7 +37,7 @@ function TabView({tabdata=[] , tabHeaders=[] , activeIndex=0 , changeActiveIndex
       {tabHeaders.map((ele , idx)=>{
         return <SwiperSlide key={idx}>
           <div onClick={()=>changeActiveIndex(idx)} className={activeIndex===idx ? active : notActive } key={idx}>
-           <h1 className="font-bold mx-5 font-sans">{ele}</h1>
+           <h1 className="font-bold mx-5 font-sans">{ele }</h1>
           </div> </SwiperSlide>
       })}
             </Slider>

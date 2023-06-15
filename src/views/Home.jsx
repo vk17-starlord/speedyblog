@@ -1,47 +1,46 @@
 import { useEffect, useState } from "react";
-import { getCategories, getDataByCategory } from "../api/categories";
+
 import Container from "../components/common/Container";
 import TabView from "../components/common/TabView";
 import Banner from "../components/home/Banner";
-import { Configuration, OpenAIApi } from "openai";
+
+import { useBlogState, useBlogUpdate } from "../context/BlogContext";
 
 function Home() {
   // declare reactive variables
 
-  const [Headings, setHeadings] = useState([]);
-  const [activeIndex, setactiveIndex] = useState(null);
-  const [currentTopicList, setcurrentTopicList] = useState([]);
+  const [activeIndex, setactiveIndex] = useState(0);
 
-  console.log(import.meta.env.VITE_OPEN_API_KEY)
-  const configuration = new Configuration({
-    apiKey: import.meta.env.VITE_OPEN_API_KEY,
-  });
-  const openai = new OpenAIApi(configuration);
+  // console.log(import.meta.env.VITE_OPEN_API_KEY)
+  // const configuration = new Configuration({
+  //   apiKey: import.meta.env.VITE_OPEN_API_KEY,
+  // });
+  // const openai = new OpenAIApi(configuration);
 
-  const getTopic = async () => {
-    // const response = await openai.createCompletion({
-    //   model: "text-davinci-003",
-    //   prompt: "Say this is a test",
-    //   max_tokens: 7,
-    //   temperature: 0,
-    // });
-    // console.log(response);
-  };
+  // const getTopic = async () => {
+  //   const response = await openai.createCompletion({
+  //     model: "text-davinci-003",
+  //     prompt: "Say this is a test",
+  //     max_tokens: 7,
+  //     temperature: 0,
+  //   });
+  //   console.log(response);
+  // };
 
+  // getTopic();
+
+  const {categories , filteredBlogs , blogs} = useBlogState()
+  const {filterData} = useBlogUpdate()  
   useEffect(() => {
-    const data = getCategories();
-    setHeadings(data);
-    setactiveIndex(0);
-    const list = getDataByCategory(data[0]);
-    setcurrentTopicList(list);
-    getTopic();
-  }, []);
+     console.log('re-rendering',filteredBlogs)
+     filterData(categories[activeIndex])
+  }, [categories , blogs]);
 
   // change current active index
   const changeActiveIndex = (idx) => {
     setactiveIndex(idx);
-    const list = getDataByCategory(Headings[idx]);
-    setcurrentTopicList(list);
+    filterData(categories[idx])
+    
   };
   return (
     <div className="w-full">
@@ -49,9 +48,10 @@ function Home() {
         <Banner></Banner>
         <h1 className="my-10 mx-2 font-sans font-bold text-2xl">Categories </h1>
         <TabView
-          tabHeaders={Headings}
+          key={blogs.length}
+          tabHeaders={categories}
           changeActiveIndex={changeActiveIndex}
-          tabdata={currentTopicList}
+          tabdata={filteredBlogs}
           activeIndex={activeIndex}
         ></TabView>
       </Container>
