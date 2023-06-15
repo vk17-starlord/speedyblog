@@ -47,16 +47,7 @@ const DraftEditor = () => {
     "Our AI writer is applying its expertise to deliver a compelling blog post. Thanks for your understanding.",
   ];
   
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-  
   const params = useParams()
   const {getBlogById} = useBlogState()
 

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useBlogUpdate } from "../../context/BlogContext";
+import { useBlogState, useBlogUpdate } from "../../context/BlogContext";
 import Button from "../common/Button";
 import Input from "../common/Input"
 import InstantInput from "../common/InstantInput";
@@ -15,9 +15,10 @@ function TopicForm() {
   }
 
   const {addBlog} = useBlogUpdate()
-
+  const {blogs} = useBlogState()
   const submitForm= ()=>{
     const object = {
+        id: blogs.length,
         topic : topic , 
         category : category , 
         keywords : keywords,
